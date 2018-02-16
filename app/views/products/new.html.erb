@@ -1,0 +1,37 @@
+<div>
+<%= form_for @product do |f| %>
+
+  <div>
+    <div>
+        <p>商品名</p>
+        <%= f.text_area :name, placeholder: "Tシャツ" %>
+    </div>
+    <div>
+        <p>説明</p>
+        <%= f.text_area :description, placeholder: "オリジナルTシャツです" %>
+    </div>
+    <div>
+        <p>カテゴリー</p>
+    </div>
+    <div>
+        <p>価格</p>
+        <%= f.number_field :price , value: 0 %>
+    </div>
+    <div>
+        <p>画像１</p>
+        <%= f.file_field :image1 %> 
+    </div>
+    <div>
+        <p>画像２</p>
+        <%= f.file_field :image2 %> 
+    </div>
+    <div>
+        <p>画像３</p>
+        <%= f.file_field :image3 %> 
+    </div>
+  </div>
+  <div>
+    <%= f.submit "送信する" %>
+  </div>
+<% end %>
+</div>

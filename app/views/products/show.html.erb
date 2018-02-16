@@ -1,0 +1,23 @@
+
+<div>
+<% if @product.user_id == current_user.id %>
+  <p><%= @product.name %></p>
+  
+  <%= image_tag "/images/#{product.image1}" if image1.present? %>
+  <%= image_tag "/images/#{product.image2}" if image2.present? %>
+  <%= image_tag "/images/#{product.image3}" if image3.present? %>
+  
+  <p>カテゴリー:<%= @product.category_id %></p>
+  <p>￥<%= @product.price %></p>
+  <p>販売手数料(10%)¥<%= @product.price * 0.1 %></p>
+  <p>販売利益¥<%= @product.price * 0.9 %></p>
+  <%= link_to edit_path,"編集する" %>
+  <p><%= @product.description %></p>
+  
+  <%= link_to products_path(post), method: :delete do %>
+    <p>削除する</p>
+  <% end %>
+<% else %>
+
+<% end %>
+</div>

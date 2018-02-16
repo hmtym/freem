@@ -1,0 +1,10 @@
+<div>
+    <h2>メールアドレス</h2>
+    <%= form_for @user, url: sign_in_path do |f| %>
+        <%= f.email_field :email, placeholder: "tarou@test.com" %>
+    <h2>パスワード</h2>
+        <%= f.password_field :password, placeholder: "8文字以上の英数字" %>
+    <button>サインインする</button>
+    <% end %>
+    <p>アカウントをお持ちですか？<%= link_to "新規登録する", sign_up_path %></p>
+</div>

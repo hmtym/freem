@@ -1,0 +1,26 @@
+<div>
+    <% if @product.any? %>
+    <ul>
+        <% @product.each do |product| %>
+            <li>
+                <p>test</p>
+                <div>
+                    <%= link_to product_path(product) do %>
+                        <%= image_tag "/images/#{product.image1}" if image1.present? %>
+                    <% end %>
+                    <%= link_to product_path(product) do %>
+                        <%= image_tag "/images/#{product.image2}" if image2.present? %>
+                    <% end %>
+                    <%= link_to product_path(product) do %>
+                        <%= image_tag "/images/#{product.image3}" if image3.present? %>
+                    <% end %>
+                    <%= product.name %>
+                    <p>￥<%= product.price %></p>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+    <% else %>
+        <p>投稿がありません。</p>
+    <% end %>
+</div>

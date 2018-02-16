@@ -1,0 +1,16 @@
+<div>
+    <%= form_for @user, url: sign_up_path do |f| %>
+    <h2>ニックネーム</h2>
+    <%= f.text_field :name, placeholder: "太郎" %>
+    <h2>メールアドレス</h2>
+    <%= f.email_field :email, placeholder: "test@test.com" %>
+    <h2>パスワード</h2>
+    <%= f.password_field :password, placeholder: "8文字以上の英数字" %>
+    <h2>パスワード（確認）</h2>
+    <%= f.password_field :password_confirmation, placeholder: "確認" %>
+    <button>登録する</button>
+    <% end %>
+</div>
+<div>
+    <p>アカウントをお持ちですか？<%= link_to "サインインする" ,sign_in_path %></p>
+</div>

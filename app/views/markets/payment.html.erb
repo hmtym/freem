@@ -1,0 +1,18 @@
+<div>
+    <p>test</p>
+    <div>
+        <p><%= product.name %></p>
+    </div>    
+    <div>
+        <%= image_tag "/images/#{product.image1}" if image1.present? %>
+    </div>    
+    <div>
+        <p>￥<%= product.price %></p>
+    </div>
+    <div>
+        <%= link_to payment_path(product) do %>
+            <%= button "購入を確定する" %>
+            <!--<% product.status = 1 %>-->
+        <%= end %>
+    </div>
+</div>

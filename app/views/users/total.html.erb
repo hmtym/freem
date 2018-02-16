@@ -1,0 +1,18 @@
+<ul>
+    <% if @product.any? %>
+        <% @product.each do |product| %>
+        <li>
+            <%= link_to product_path(product) do %>
+                <%= image_tag "/images/#{product.image1}" if image1.present? %>
+            <% end %>
+            <p><%= product.name %></p>
+            <p><%= product.price %></p>
+            <%= link_to like_path(product) do %>
+                <i class="fa <%= product.like_from?(current_user)? "fa-heart active" : "fa-heart-o" %>"></i>
+            <% end %>
+        </li>
+        <% end %>
+    <% else %>
+        <p>対象の商品は見つかりませんでした。</p>
+    <% end %>
+</ul>

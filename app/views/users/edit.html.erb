@@ -1,0 +1,23 @@
+<div>
+  <%= form_for @user, url: profiles_edit_path, method: :post do |f| %>
+    
+    <label>画像</label>
+        <%= f.file_field :image %>
+        <input type="submit" value="保存する">
+    
+    <%= f.label :name, "名前" %>
+    <%= f.text_field :name, placeholder: "名前を入力して下さい。" %>
+    
+    <%= f.label :profile, "プロフィール" %>
+    <%= f.text_field :profile, placeholder: "コメントを入力して下さい。" %>
+    
+    <%= f.label :password, "パスワード" %>
+    <%= f.password_field :password, placeholder: "パスワードを更新しない場合は入力しないで下さい" %>
+    
+    <%= f.label :password_confirmation, "パスワード確認用" %>
+    <%= f.password_field :password_confirmation, placeholder: "確認用" %>
+    
+    
+        
+  <% end %>
+</div>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Freem</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
+  </head>
+
+  <body>
+    <header>
+      <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type %>"><%= message %></div>
+      <% end %>
+      <!---->
+      <form>
+        <input type="text" placeholder="キーワードから検索" name="word" value="">
+        <%= link_to products_path do %>
+          <i class="fa fa-upload"></i>
+        <% end %>
+      </form>
+      <!--出品ボタン-->
+      <button>出品する</button>
+      <!--マイページ-->
+    </header>
+    <%= yield %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      window.setTimeout(function() {
+        $(".alert").slideUp();
+      }, 3000);
+    </script>
+    <div>
+      <h2>マイページ</h2>
+        <%= link_to "出品する", new_path %>
+        <%= link_to "お気に入りの商品", likes_path %>
+        <%= link_to "プロフィール更新", profiles_edit_path %>
+        <%= link_to "サインアウト", sign_out_path %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Freem</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
+  </head>
+
+<body>
+    <header>
+    <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type %>"><%= message %></div>
+    <% end %>
+      <!---->
+      
+    <form>
+        <input type="text" placeholder="キーワードから検索" name="word" value="">
+        <%= link_to products_path do %>
+            <i class="fa fa-upload"></i>
+        <% end %>
+      </form>
+      <!--出品ボタン-->
+      <button>出品する</button>
+      <!--マイページ-->
+    </header>
+    <%= yield %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      window.setTimeout(function() {
+        $(".alert").slideUp();
+      }, 3000);
+    </script>
+    
+    <div>
+        <h2>詳細検索</h2>
+        <div>
+            <div>
+                <p>キーワード追加</p>
+                <form>
+                  <input type="text" placeholder="例) 値下げ" name="keyword" value="">
+                </form>
+            </div>
+            <div>
+                <p>カテゴリー選択</p>
+                <form>
+                  <input type="text" placeholder="検索ワードを入力" name="word" value="">
+                </form>
+            </div>
+            <div>
+                <p>価格</p>
+                <form>
+                  <input type="text" placeholder="100" name="price_low" value="">
+                </form>
+                <form>
+                  <input type="text" placeholder="1000" name="price_high" value="">
+                </form>
+            </div>
+            <div>
+                <p>並び替え</p>
+                <form>
+                  <input type="text" placeholder="" name="word" value="">
+                </form>
+            </div>
+            
+            
+            
+<!--        <%= form_for @product do |f| %>-->
+<!--        <div>-->
+<!--            <div>-->
+<!--                <p>キーワード追加</p>-->
+<!--                <%= f.text_area :name, placeholder: "例) 値下げ" %>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <p>カテゴリー選択</p>-->
+<!--                <%= f.text_area :description, placeholder: "オリジナルTシャツです" %>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <p>価格</p>-->
+<!--                <%= f.number_field :price , value: 100 %>-->
+<!--                <p>〜</p>-->
+<!--                <%= f.number_field :price , value: 1000 %>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <p>画像１</p>-->
+<!--                <%= f.file_field :image1 %> -->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <%= f.submit "検索" %>-->
+<!--        </div>-->
+<!--<% end %>-->
+
+    </div>
+        <%= link_to "出品する", new_path %>
+        <%= link_to "お気に入りの商品", likes_path %>
+        <%= link_to "プロフィール更新", profiles_edit_path %>
+        <%= link_to "サインアウト", sign_out_path %>
+    </div>
+</body>
+</html>
