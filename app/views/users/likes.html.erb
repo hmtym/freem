@@ -1,8 +1,8 @@
 <ul>
-    <% if @product.any? %>
-        <% @product.each do |product| %>
+    <% if @products.any? %>
+        <% @products.each do |product| %>
         <li>
-            <%= link_to item_path(product) do %>
+            <%= link_to product_path(product) do %>
                 <%= image_tag "/images/#{product.image1}" if product.image1.present? %>
             <% end %>
             
@@ -14,7 +14,6 @@
         </li>
         <% end %>
     <% else %>
-        <p>対象の商品は見つかりませんでした。</p>
+        <p>お気に入りの商品は見つかりませんでした。</p>
     <% end %>
 </ul>
-

@@ -1,7 +1,6 @@
 
 <div>
 <%= form_for @product do |f| %>
-
   <div>
     <div>
         <p>商品名</p>
@@ -13,19 +12,22 @@
     </div>
     <div>
         <p>カテゴリー</p>
+        <%= f.collection_select :category_id, @category, :id, :name %>
     </div>
     <div>
         <p>価格</p>
         <%= f.number_field :price , value: @product.price %>
     </div>
-    <!--登録画像表示-->
+    
     <div>
         <p>画像１</p>
         <%= f.file_field :image1 %> 
+        <%= image_tag "/images/#{@product.image1}" if @product.image1.present? %>
     </div>
     <div>
         <p>画像２</p>
         <%= f.file_field :image2 %> 
+        <%= image_tag "/images/#{@product.image2}" if @product.image2.present? %>
     </div>
     <div>
         <p>画像３</p>

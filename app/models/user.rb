@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    before_save :convert_password
+    before_create :convert_password
     has_many :products
     has_many :userlikes
     
@@ -14,6 +14,6 @@ class User < ApplicationRecord
     # バリデーション
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :name, presence: true
-    validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}
+    validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: true
     validates :password, presence: true, length:{minimum: 8}, confirmation: true
 end

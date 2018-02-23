@@ -1,8 +1,8 @@
 <div>
   <div style="background: url('<%= image_url(@user) %>'); background-position: 50%; background-size: cover;"></div>
 </div>
-
+<%= image_tag "/users/#{@user.image}" if @user.image.present? %>
 <p><%= @user.name %>さん</p>
-<p>出品数<%= @products.name.length %></p>
+<p>出品数<%= @product.name.length %></p>
 
 <%= @user.profile %>

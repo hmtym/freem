@@ -1,23 +1,30 @@
-
 <div>
 <% if @product.user_id == current_user.id %>
+  <% if @product.status == 0 %>
+    <p>販売中</p>
+  <% else %>
+    <p>売り切れ</p>
+  <% end %>
   <p><%= @product.name %></p>
   
-  <%= image_tag "/images/#{product.image1}" if image1.present? %>
-  <%= image_tag "/images/#{product.image2}" if image2.present? %>
-  <%= image_tag "/images/#{product.image3}" if image3.present? %>
+  <%= image_tag "/images/#{@product.image1}" if @product.image1.present? %>
+  <%= image_tag "/images/#{@product.image2}" if @product.image2.present? %>
+  <%= image_tag "/images/#{@product.image3}" if @product.image3.present? %>
   
-  <p>カテゴリー:<%= @product.category_id %></p>
+  <p>カテゴリー:<%= @category.name %></p>
   <p>￥<%= @product.price %></p>
   <p>販売手数料(10%)¥<%= @product.price * 0.1 %></p>
   <p>販売利益¥<%= @product.price * 0.9 %></p>
-  <%= link_to edit_path,"編集する" %>
+  <%= link_to "編集する",product_edit_path(@product) %>
   <p><%= @product.description %></p>
   
-  <%= link_to products_path(post), method: :delete do %>
-    <p>削除する</p>
-  <% end %>
+    <%= link_to product_path(@product), method: :delete do %>
+      <i class="fa fa-close"></i>
+    <% end %>
+  削除する
+  カテゴリーname
+  
 <% else %>
-
+  
 <% end %>
 </div>

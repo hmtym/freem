@@ -4,6 +4,11 @@ class Product < ApplicationRecord
   has_many :userlikes
   
   def like_from?(user)
-    self.product_likes.exists?(user_id: user.id)
+    self.userlikes.exists?(user_id: user.id)
   end
+  
+  # def initialize(params)
+  #   @user_name = params[:name]
+  #   @image1 = params[:image1]
+  # end
 end

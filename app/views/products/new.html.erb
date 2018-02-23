@@ -4,14 +4,15 @@
   <div>
     <div>
         <p>商品名</p>
-        <%= f.text_area :name, placeholder: "Tシャツ" %>
+        <%= f.text_area :name, placeholder: "Tシャツ", value: @product.name %>
     </div>
     <div>
         <p>説明</p>
-        <%= f.text_area :description, placeholder: "オリジナルTシャツです" %>
+        <%= f.text_area :description, placeholder: "オリジナルTシャツです" , value: @product.description %>
     </div>
     <div>
         <p>カテゴリー</p>
+        <%= f.collection_select :category_id, @category, :id, :name %>
     </div>
     <div>
         <p>価格</p>
@@ -19,7 +20,7 @@
     </div>
     <div>
         <p>画像１</p>
-        <%= f.file_field :image1 %> 
+        <%= f.file_field :image1,value: @product.image1 %> 
     </div>
     <div>
         <p>画像２</p>

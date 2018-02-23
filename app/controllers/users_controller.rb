@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   def profiles
     @user = current_user
-    @products = Product.where(user_id: @user.id)
+    @product = Product.where(user_id: @user.id)
   end
   
   def edit
@@ -12,12 +12,32 @@ class UsersController < ApplicationController
   end
   
   def update
+    @user = current_user
+    upload_file = params[:user][:image]
+    if upload_file.present?
+      upload_file_name = upload_file.original_filename
+      output_dir = Rails.root.join('public', 'users')
+      output_path = output_dir + upload_file_name
+      File.open(output_path, 'w+b') do |f|
+        f.write(upload_file.read)
+      end
+      @user.image =  upload_file.original_filename
+    end
+    if user_params[:password].length > 0
+      @user.update(user_params)
+    else
+      @user.update(update_params)
+    end
+    p current_user.errors.full_messages
+    # データベースに更新
+    redirect_to top_path and return
   end
   
   
   
   def sign_in
     @user = User.new
+    render layout: "application_search"
   end
   
   def sign_in_process
@@ -33,6 +53,7 @@ class UsersController < ApplicationController
   
   def sign_up
     @user = User.new
+    render layout: "application_search"
   end
   
   def sign_up_process
@@ -57,33 +78,59 @@ class UsersController < ApplicationController
   end
   
   def likes
-  end
-  
-  def profiles_edit
+    @user = current_user
+    
+    @products = Product.where(id: Userlike.where(user_id: @user.id).pluck(:product_id))
   end
   
   def total
-    @product = Product.all.order("id desc")
-  end
-  
-  def like
-    @product = Product.find(params[:id])
-    if ProductLike.exists?(producr_id: @product.id, user_id: current_user.id)
-      # いいねを削除
-      ProductLike.find_by(producr_id: @product.id, user_id: current_user.id).destroy
-    else
-      # いいねを登録
-      ProductLike.create(producr_id: @product.id, user_id: current_user.id)
+    @product = Product.all
+    if params[:word].present?
+      @product = @product.where("name like ?", "%#{params[:word]}%")
     end
-    redirect_to top_path and return
+    
+    if params[:category_id].present?
+      if params[:category_id] == "5"
+        @product = @product.all
+      else
+        @product = @product.where(category_id: params[:category_id])
+      end
+    end
+    
+    if params[:min_price].present?
+      @product = @product.where("price >= ?", params[:min_price].to_i)
+    end
+    
+    if params[:max_price].present?
+      @product = @product.where("price <= ?", params[:max_price].to_i)
+    end
+    
+    if params[:arrangement] == "created_at"
+      if params[:order] == "asc"
+        @product = @product.order("created_at asc")
+      elsif params[:order] == "desc"
+        @product = @product.order("created_at desc")
+      end
+     elsif params[:arrangement] =- "price" 
+      if params[:order] == "asc"
+        @product = @product.order("price asc")
+      elsif params[:order] == "desc"
+        @product = @product.order("price desc")
+      end
+    end
+    render layout: "application_search"
   end
   
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile)
   end
   
   def product_params
     params.require(:product).permit(:name, :description, :price, :category_id).merge(user_id: current_user.id)
+  end
+  
+  def update_params
+    params.require(:user).permit(:name, :email, :profile)
   end
 end

@@ -1,25 +1,27 @@
+
 <div>
-    <p>test</p>
-    <div>
-        <p><%= product.name %></p>
-    </div>    
-    <div>
-        <%= image_tag "/images/#{product.image1}" if image1.present? %>
-    </div>    
-    <div>
-        <p>カテゴリー:<%= product.category_id %></p>
-    </div>
-    <div>
-        <p>￥<%= product.price %></p>
-    </div>
-    <div>
-        <% if product.status == 0 %>
-        <%= link_to payment_path(product) do %>
-            <%= button "購入する" %>
-        <%= end %>
-        <%= end %>
-    </div>
-    <div>
-        <%= product.description %>
-    </div>
+    <p><%= @product.name %></p>
+</div>    
+<div>
+    <%= image_tag "/images/#{@product.image1}" if @product.image1.present? %>
+</div>
+<div>
+    <%= image_tag "/images/#{@product.image2}" if @product.image2.present? %>
+</div>    
+<div>
+    <%= image_tag "/images/#{@product.image3}" if @product.image3.present? %>
+</div>    
+<div>
+    <p>カテゴリー:<%= @category.name %></p>
+</div>
+<div>
+    <p>￥<%= @product.price %></p>
+</div>
+<div>
+    <% if @product.status == 0 %>
+        <%= link_to "購入する", payment_path(@product) %>
+    <% end %>
+</div>
+<div>
+    <%= @product.description %>
 </div>

@@ -1,3 +1,93 @@
+// ヘッダー部分
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+header {
+  background-color: white;
+  padding-bottom: 10px;
+}
+.logo_title {
+    width: 200px;
+    font-size: 35px;
+    text-align: left;
+    // margin-bottom: 20px;
+    font-family: cursive;
+    color: #0D2243;
+    float:left;
+  }
+
+main {
+  background-color: #EEEEEE;
+  padding-top: 25px;
+  padding-bottom: 20px;
+}
+footer {
+  background-color: white;
+}
+nav {
+  background-color: white;
+  padding: 20px 15px;
+}
+.yield {
+  float: left;
+  background-color: white;
+  margin-right: 20px;
+  padding: 25px;
+  width: 600px;
+}
+main li:not(:first-child) {
+  margin-top: 15px;
+}
+a {
+  text-decoration: none;
+  color: black;
+  size: 17px;
+}
+.my_page {
+  float: left;
+  width: 220px;
+}
+.my_page_title {
+  size: 20px;
+}
+.extensive_search {
+  float: left;
+}
+.search_box {
+  float: left;
+}
+.price_box {
+  float: left;
+}
+.search_margin {
+  margin-top: 10px;
+}
+.exhibit_button {
+  background-color: #0A9FF3;
+  float: left;
+}
+.box_character {
+  color: white;
+  size: 16px;
+}
+footer li {
+  float: left;
+}
+.icon_size:before {
+  font-family: FontAwesome;
+  content: "\f2bd";
+}
+//中央寄せ
+ .container {
+   width: 960px;
+   margin: 0 auto;
+   padding: 15px;
+ }
+
+
 // アラート
 .alert {
   position: fixed;

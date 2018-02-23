@@ -1,43 +1,70 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Freem</title>
+    <title>Flea</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   </head>
 
   <body>
-    <header>
+    <header class="header">
       <% flash.each do |type, message| %>
         <div class="alert alert-<%= type %>"><%= message %></div>
       <% end %>
-      <!---->
-      <form>
-        <input type="text" placeholder="キーワードから検索" name="word" value="">
-        <%= link_to products_path do %>
-          <i class="fa fa-upload"></i>
+      <div class="container clearfix">
+        <h1 class="logo_title">Flea Market</h1>
+        <%= form_tag total_path ,method: :get ,class: "search_box" do %>
+          <%= text_field nil, :word, placeholder: "キーワードから検索" %>
+          <%= button_tag do %>
+            <i class="fab fa-sistrix"></i>
+          <% end %>
         <% end %>
-      </form>
-      <!--出品ボタン-->
-      <button>出品する</button>
-      <!--マイページ-->
+        <!--出品ボタン-->
+        <div class="exhibit_button">
+          <%= link_to "出品する",new_path,class: "box_character" %>
+        </div>
+        <%= link_to products_path do %>
+          <span class="icon_size"></span>
+          
+        <% end %>
+      </div>
     </header>
-    <%= yield %>
+    <main>
+      <div class="container clearfix">
+        <div class="yield">
+          <%= yield %>
+        </div>
+        <nav class="my_page">
+          <h1 class="my_page_title">マイページ</h1>
+          <ul>
+            <li><%= link_to "出品する", new_path %></li>
+            <li><%= link_to "出品中の商品", products_path %></li>
+            <li><%= link_to "お気に入りの商品", likes_path %></li>
+            <li><%= link_to "プロフィール更新", profiles_edit_path %></li>
+            <li><%= link_to "サインアウト", sign_out_path %></li>
+          </ul>
+        </nav>
+      </div>
+    </main>
+    <footer>
+      <div class="container clearfix">
+        <ul class="clearfix">
+          <li>プライバシーポリシー</li>
+          <li>特定商取引に基づく表示</li>
+          <li>利用規約</li>
+          <li>サイトマップ</li>
+        </ul>
+      </div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
       window.setTimeout(function() {
         $(".alert").slideUp();
       }, 3000);
     </script>
-    <div>
-      <h2>マイページ</h2>
-        <%= link_to "出品する", new_path %>
-        <%= link_to "お気に入りの商品", likes_path %>
-        <%= link_to "プロフィール更新", profiles_edit_path %>
-        <%= link_to "サインアウト", sign_out_path %>
-    </div>
   </body>
 </html>
